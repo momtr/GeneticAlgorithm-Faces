@@ -1,0 +1,149 @@
+<html>
+<head>
+
+  <title>faces - genetic algorithm</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.sound.min.js"></script>
+
+    <meta charset="utf-8">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      display: block;
+    }
+
+    body {
+      background-color: rgb(80,80,80);
+      font-family: Verdana, Helvetica, Arial;
+      margin: 8%;
+    }
+    .box {
+      color: white;
+      background-color: black;
+      border-radius: 8px;
+      padding: 2%;
+      margin: 2%;
+    }
+    button {
+      color: white;
+      background-color: black;
+      border-radius: 8px;
+      padding: 1%;
+      margin: 1%;
+    }
+    .a { text-align: center; }
+    .code { font-family: monospace; }
+
+  </style>
+  
+  <script src="script.js"></script>
+
+</head>
+<body>
+
+  <div class="box">
+    <h3>Faces - Genetic Algorithm</h3>
+  </div>
+
+  <div class="box">
+    <h2>Wie funktioniert's?</h2>
+    <hr>
+    <p>
+    Das Modell basiert auf einem sogenanntem "Genetic Algorithm" (deutsch: genetischer Algorithmus), was Gemeinsamkeiten zu der tatsächlichen Evolution hat.
+    </p>
+    Der Algorithmus basiert auf folgenden Prinzipien:
+    <ul>
+      <li><b>Vererbung</b> (Weitergabe genetischer Merkmale</li>
+      <li><b>Selektion</b> (Selektion der am besten geeigneten Kreaturen)</li>
+      <li><b>Variation</b> (Variation von Merkmalen)</li>
+    </ul><br>
+    <p>
+      <b>Genotyp vs. Phenotyp</b>
+      <ul>
+        <li>Der Genotyp ist die Abfolge bestimmter Erbgutinformationen (in der DNA zu finden).</li>
+        <li>Der Phenoty ist die visuelle Ausprägung dieser Merkmale.</li>
+      </ul>
+      Beispielsweise:<br>
+      Genotyp: A,B,C,D,A,B,B,B,C,D,D,A,D,C<br>
+      Phenotyp: eine rote Blume mit gelben Blüten
+    </p>
+    <br>
+    <p>
+      <h3>Pseudocode</h3>
+      <div class="code">
+      <pre>
+        setup:
+          create population of n elements
+        while !stop:
+          parents[] = get 2 fittest of population
+          children[] = get two children out of parents[]
+          new population = children[i]
+          mutate population to get variance
+      </pre>
+      </div>
+      <br>
+      <h3>Im Allgemeinen</h3>
+      <pre>
+      1. Erschaffen Sie eine Population von n Elementen 
+      (welche Kreaturen oder Ähnliches sein können)
+      2. Wiederholen Sie die nächsten Schritte vortlaufend:
+          2a. Ermitteln Sie die zwei Elemente der Population,
+           welche den besten Ansatz zur Problemlösung bereitstellen
+          2b. Kreuzen Sie zwei zufällige Elemente der Population 
+          um daraus zwei Kinder zu bekommen
+          2c. Übertragen Sie die beiden Elemente auf die gesamte Population
+          2d. Mutieren Sie die gesamte Population
+          3e. erhöhen Sie die Population
+    </pre>
+    <br>
+    <pre>
+    1. var population = [];
+       var n = 10; //size of population
+       for(var i = 0; i < n; i++){
+        var dna = new RandomVector();
+        population.push(new Kreatur(dna));
+       }
+
+    2. while(!stop)
+    2a. function fitness(){
+          dies is folgende Funktion, welche einen Float-Wert zwischen 
+          0 und 1 returned, welcher dem Prozentsatz der Problemlösung entspricht.
+          zB. die Strecke welche eine Kreatur laufen kann 
+          (in diesem Beispiel die Anzahl der "Likes" jeder Kreatur).
+        }
+
+    </pre>
+    </p>
+    <p>
+      <h3>Dieses Beispiel</h3>
+      <pre>
+      Array = {
+        index: zugehörige Größe 
+      }
+      DNA = {
+        0: Größe 
+        1: Farbe-R 
+        2: Farbe-G 
+        3: Farbe-B 
+        4: Auge-Y-Koordinate, Auge-Farbe-R
+        5: Auge-X-Koordinate, Auge-Farbe-G, 
+        Mund-X-K., Mund-Y-K., Mund-Breite, Mund-Höhe
+        6: Auge Größe, Auge-Farbe-B
+        7: Mund-Farbe-R
+        8: Mund-Farbe-G
+        9: Mund-Farbe-B
+      }
+    </pre>
+    </p>
+  </div>
+
+    <div class="a"><button onClick="nextGeneration()">evolve next generation</button></div>
+
+</body>
+</html>
